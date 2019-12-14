@@ -12,7 +12,7 @@ export default class BootScene extends Phaser.Scene {
   preload () {
     this.load.tilemapTiledJSON('level1', level1);
     this.load.tilemapTiledJSON('level2', level2);
-    this.load.spritesheet('mainTileSheet', mainTileSheet, { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('mainTileSheet', mainTileSheet, { frameWidth: 16, frameHeight: 16, margin: 0, spacing: 1 });
     this.load.image('tony', tony);
   }
 

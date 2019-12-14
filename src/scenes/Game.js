@@ -8,7 +8,14 @@ export default class BootScene extends Phaser.Scene {
 
   preload () {
     this.scale.on('resize', this.resize, this);
-    this.cursors = this.input.keyboard.createCursorKeys();
+    this.cursors = this.input.keyboard.addKeys(
+      {
+        up:Phaser.Input.Keyboard.KeyCodes.W,
+        down:Phaser.Input.Keyboard.KeyCodes.S,
+        left:Phaser.Input.Keyboard.KeyCodes.A,
+        right:Phaser.Input.Keyboard.KeyCodes.D
+      }
+    );
     this.createMap();
     this.createPlayer();
     this.addCollisions();
@@ -24,7 +31,7 @@ export default class BootScene extends Phaser.Scene {
   }
 
   createMap() {
-    this.map = this.make.tilemap({key: 'level2'});
+    this.map = this.make.tilemap({key: 'level1'});
     this.physics.world.setBounds(0, 0, 2560, 2560);
     this.tiles = this.map.addTilesetImage('mainTileSheet');
     this.floorLayer = this.map.createStaticLayer('Floor', this.tiles, 0, 0);
@@ -33,19 +40,29 @@ export default class BootScene extends Phaser.Scene {
     this.furnishingsLayer = this.map.createStaticLayer('Furnishings', this.tiles, 0, 0);
     this.decorationsLayer1 = this.map.createStaticLayer('Decorations 1', this.tiles, 0, 0);
     this.decorationsLayer2 = this.map.createStaticLayer('Decorations 2', this.tiles, 0, 0);
+    this.clues = this.map.createFromObjects('Clues', 'Clue', {key: 'mainTileSheet', frame: 885});
     this.floorLayer.setScale(4);
     this.walkwayLayer.setScale(4);
     this.wallsLayer.setScale(4);
     this.furnishingsLayer.setScale(4);
     this.decorationsLayer1.setScale(4);
     this.decorationsLayer2.setScale(4);
+    this.clues.forEach((obj) => {
+      obj.setScale(4);
+      obj.setPosition(obj.x * 4, obj.y * 4);
+      console.log(obj);
+      // obj.setTexture('mainTileSheet', obj.gid - 1)
+    });
     this.wallsLayer.setCollisionByExclusion([-1]);
+    this.map.findObject('Clues', (obj) => {
+      // console.log(obj);
+    });
   }
 
   createPlayer() {
     this.map.findObject('Player', (obj) => {
       if (obj.type === 'SpawnPoint') {
-        this.player = new Player(this, obj.x * 4, obj.y * 4);
+        this.player = new Player(this, obj.x * 4, obj.y * 4, 'tony');
       }
     });
   }
@@ -55,7 +72,6 @@ export default class BootScene extends Phaser.Scene {
   }
 
   resize (gameSize, baseSize, displaySize, resolution) {
-    console.log('resizing');
     let width = gameSize.width;
     let height = gameSize.height;
     if (width === undefined) {

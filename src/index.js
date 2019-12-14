@@ -7,10 +7,6 @@ const config = {
   parent: 'purgatony',
   width: window.innerWidth,
   height: window.innerHeight,
-  scale: {
-    mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH
-  },
   pixelArt: true,
   roundPixels: true,
   physics: {
@@ -33,6 +29,5 @@ class Game extends Phaser.Game {
 
 window.game = new Game();
 window.addEventListener('resize', (event) => {
-  console.log('resize game');
   game.scale.resize(window.innerWidth, window.innerHeight);
 });

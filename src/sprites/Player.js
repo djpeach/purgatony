@@ -1,15 +1,9 @@
 import 'phaser';
+import Character from "./Character";
 
-export default class Player extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y) {
-    super(scene, x, y, 'tony', 0);
-    this.scene = scene;
-
-    this.scene.physics.world.enable(this);
-    this.scene.add.existing(this);
-
-    this.setScale(1.5);
-    this.setCollideWorldBounds(true);
+export default class Player extends Character {
+  constructor(scene, x, y, spritesheet) {
+    super(scene, x, y, spritesheet, 0);
   }
 
   update(dt, cursors) {
@@ -44,39 +38,5 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const x = speed * Math.cos(angle * Math.PI / 180);
     const y = speed * Math.sin(angle * Math.PI / 180);
     this.setVelocity(x, y);
-    // if (x < 0) {
-    //   if (this.x - this.body.width / 2 > 0) {
-    //     this.setVelocityX(x);
-    //   } else {
-    //     this.x = this.body.width / 2;
-    //     this.setVelocityX(0);
-    //   }
-    // } else if (x > 0) {
-    //   if (this.x + this.body.width / 2 < 2560) {
-    //     this.setVelocityX(x);
-    //   } else {
-    //     this.x = 2560 - this.body.width / 2;
-    //     this.setVelocityX(0);
-    //   }
-    // } else if (x === 0) {
-    //   this.setVelocityX(x);
-    // }
-    // if (y < 0) {
-    //   if (this.y - this.body.height / 2 > 0) {
-    //     this.setVelocityY(y);
-    //   } else {
-    //     this.y = this.body.height / 2;
-    //     this.setVelocityY(0);
-    //   }
-    // } else if (y > 0) {
-    //   if (this.y + this.body.height / 2 < 2560) {
-    //     this.setVelocityY(y);
-    //   } else {
-    //     this.y = 2560 - this.body.height / 2;
-    //     this.setVelocityY(0);
-    //   }
-    // } else if (y === 0) {
-    //   this.setVelocityY(y);
-    // }
   }
 }
