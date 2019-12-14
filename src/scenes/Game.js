@@ -11,6 +11,7 @@ export default class BootScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
     this.createMap();
     this.createPlayer();
+    this.addCollisions();
 
     this.cameras.main.startFollow(this.player);
   }
@@ -18,23 +19,38 @@ export default class BootScene extends Phaser.Scene {
   create () {
   }
 
-  update() {
-    this.player.update(this.cursors);
+  update(time, dt) {
+    this.player.update(dt, this.cursors);
   }
 
   createMap() {
-    this.map = this.make.tilemap({key: 'level1'});
+    this.map = this.make.tilemap({key: 'level2'});
     this.tiles = this.map.addTilesetImage('mainTileSheet');
-    this.backgroundLayer = this.map.createStaticLayer('Floor', this.tiles, 0, 0);
+    this.floorLayer = this.map.createStaticLayer('Floor', this.tiles, 0, 0);
     this.walkwayLayer = this.map.createStaticLayer('Walkways', this.tiles, 0, 0);
+    this.wallsLayer = this.map.createStaticLayer('Walls', this.tiles, 0, 0);
     this.furnishingsLayer = this.map.createStaticLayer('Furnishings', this.tiles, 0, 0);
-    this.backgroundLayer.setScale(4);
+    this.decorationsLayer1 = this.map.createStaticLayer('Decorations 1', this.tiles, 0, 0);
+    this.decorationsLayer2 = this.map.createStaticLayer('Decorations 2', this.tiles, 0, 0);
+    this.floorLayer.setScale(4);
     this.walkwayLayer.setScale(4);
+    this.wallsLayer.setScale(4);
     this.furnishingsLayer.setScale(4);
+    this.decorationsLayer1.setScale(4);
+    this.decorationsLayer2.setScale(4);
+    this.wallsLayer.setCollisionByExclusion([-1]);
   }
 
   createPlayer() {
-    this.player = new Player(this, 0, 0);
+    this.map.findObject('Player', (obj) => {
+      if (obj.type === 'SpawnPoint') {
+        this.player = new Player(this, obj.x * 4, obj.y * 4);
+      }
+    });
+  }
+
+  addCollisions() {
+    this.physics.add.collider(this.player, this.wallsLayer);
   }
 
   resize (gameSize, baseSize, displaySize, resolution) {
