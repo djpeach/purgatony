@@ -25,6 +25,7 @@ export default class BootScene extends Phaser.Scene {
 
   createMap() {
     this.map = this.make.tilemap({key: 'level2'});
+    this.physics.world.setBounds(0, 0, 2560, 2560);
     this.tiles = this.map.addTilesetImage('mainTileSheet');
     this.floorLayer = this.map.createStaticLayer('Floor', this.tiles, 0, 0);
     this.walkwayLayer = this.map.createStaticLayer('Walkways', this.tiles, 0, 0);
@@ -50,10 +51,11 @@ export default class BootScene extends Phaser.Scene {
   }
 
   addCollisions() {
-    this.physics.add.collider(this.player, this.wallsLayer);
+    this.physics.add.collider(this.player, this.wallsLayer)
   }
 
   resize (gameSize, baseSize, displaySize, resolution) {
+    console.log('resizing');
     let width = gameSize.width;
     let height = gameSize.height;
     if (width === undefined) {
