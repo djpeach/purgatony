@@ -1,5 +1,6 @@
 import 'phaser';
 import Player from '../sprites/Player'
+import Clue from "../sprites/Clue";
 
 export default class BootScene extends Phaser.Scene {
   constructor (key) {
@@ -17,6 +18,7 @@ export default class BootScene extends Phaser.Scene {
       }
     );
     this.createMap();
+    this.createClues();
     this.createPlayer();
     this.addCollisions();
 
@@ -40,23 +42,13 @@ export default class BootScene extends Phaser.Scene {
     this.furnishingsLayer = this.map.createStaticLayer('Furnishings', this.tiles, 0, 0);
     this.decorationsLayer1 = this.map.createStaticLayer('Decorations 1', this.tiles, 0, 0);
     this.decorationsLayer2 = this.map.createStaticLayer('Decorations 2', this.tiles, 0, 0);
-    this.clues = this.map.createFromObjects('Clues', 'Clue', {key: 'mainTileSheet', frame: 885});
     this.floorLayer.setScale(4);
     this.walkwayLayer.setScale(4);
     this.wallsLayer.setScale(4);
     this.furnishingsLayer.setScale(4);
     this.decorationsLayer1.setScale(4);
     this.decorationsLayer2.setScale(4);
-    this.clues.forEach((obj) => {
-      obj.setScale(4);
-      obj.setPosition(obj.x * 4, obj.y * 4);
-      console.log(obj);
-      // obj.setTexture('mainTileSheet', obj.gid - 1)
-    });
     this.wallsLayer.setCollisionByExclusion([-1]);
-    this.map.findObject('Clues', (obj) => {
-      // console.log(obj);
-    });
   }
 
   createPlayer() {
@@ -68,31 +60,43 @@ export default class BootScene extends Phaser.Scene {
     this.anims.create({
       key: 'down',
       frames: this.anims.generateFrameNumbers('tony', { start: 0, end: 3 }),
-      frameRate: 10,
+      frameRate: 7,
       repeat: -1
     });
     this.anims.create({
       key: 'up',
       frames: this.anims.generateFrameNumbers('tony', { start: 4, end: 7 }),
-      frameRate: 10,
+      frameRate: 7,
       repeat: -1
     });
     this.anims.create({
       key: 'right',
       frames: this.anims.generateFrameNumbers('tony', { start: 8, end: 11 }),
-      frameRate: 10,
+      frameRate: 7,
       repeat: -1
     });
     this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('tony', { start: 12, end: 15 }),
-      frameRate: 10,
+      frameRate: 7,
       repeat: -1
     });
   }
 
+  createClues() {
+    let objectLayer = this.map.getObjectLayer('Clues');
+    let clues = this.add.group();
+    objectLayer.objects.forEach((clue) => {
+      console.log(clue);
+      let clueSprite = new Clue(this, clue.x, clue.y, clue.gid - 1, clue.rotation * Math.PI / 180);
+      console.log(clueSprite);
+    });
+
+    return clues
+  }
+
   addCollisions() {
-    this.physics.add.collider(this.player, this.wallsLayer)
+    // this.physics.add.collider(this.player, this.wallsLayer)
   }
 
   resize (gameSize, baseSize, displaySize, resolution) {
