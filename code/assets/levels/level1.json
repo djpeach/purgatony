@@ -131,8 +131,8 @@
                  "type":"Bear Bottle",
                  "visible":true,
                  "width":16,
-                 "x":239.196549724926,
-                 "y":58.791285738468
+                 "x":239.197,
+                 "y":58.7913
                 }, 
                 {
                  "gid":898,
@@ -151,6 +151,40 @@
                  "width":16,
                  "x":381.65,
                  "y":44.01
+                }, 
+                {
+                 "height":10.5391451544647,
+                 "id":13,
+                 "name":"Clue",
+                 "rotation":0,
+                 "type":"Hidden Book",
+                 "visible":true,
+                 "width":12.2319085907744,
+                 "x":193.609818027931,
+                 "y":323.317816335167
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":11,
+         "name":"ClientSpawns",
+         "objects":[
+                {
+                 "height":0,
+                 "id":14,
+                 "name":"misterChester",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":319.574989783408,
+                 "y":90.7233346955456
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -158,8 +192,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":11,
- "nextobjectid":10,
+ "nextlayerid":13,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.1",

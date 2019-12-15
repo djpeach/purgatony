@@ -10,11 +10,11 @@ export default class Player extends Character {
   update(dt, cursors) {
     let speed = 0;
     let angle = 0;
-    let vel = 25;
+    let potSpeed = 400;
     if (cursors.up.isDown) {
-      this.holdingFrame = 5;
+      this.holdingFrame = 1;
       this.anims.play('up', true, this.holdingFrame);
-      speed = vel * dt;
+      speed = potSpeed;
       if (cursors.left.isDown) {
         angle = 225
       } else if (!cursors.right.isDown) {
@@ -23,9 +23,9 @@ export default class Player extends Character {
         angle = 315
       }
     } else if (cursors.down.isDown) {
-      this.holdingFrame = 1;
+      this.holdingFrame = 5;
       this.anims.play('down', true, this.holdingFrame);
-      speed = vel * dt;
+      speed = potSpeed;
       if (cursors.right.isDown) {
         angle = 45;
       } else if (!cursors.left.isDown) {
@@ -34,14 +34,14 @@ export default class Player extends Character {
         angle = 135;
       }
     } else if (cursors.left.isDown) {
-      this.holdingFrame = 13;
+      this.holdingFrame = 9;
       this.anims.play('left', true, this.holdingFrame);
-      speed = vel * dt;
+      speed = potSpeed;
       angle = 180;
     } else if (cursors.right.isDown) {
-      this.holdingFrame = 9;
+      this.holdingFrame = 13;
       this.anims.play('right', true, this.holdingFrame);
-      speed = vel * dt;
+      speed = potSpeed;
       angle = 0;
     } else {
       this.anims.stop();
