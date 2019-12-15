@@ -23,10 +23,8 @@ export default class BootScene extends Phaser.Scene {
     this.clients = this.createClients();
     this.player = this.createPlayer();
     this.addCollisions();
-    console.log(this.player);
-    console.log(this.clients.children.entries[0]);
 
-    this.cameras.main.startFollow(this.clients.children.entries[0]);
+    this.cameras.main.startFollow(this.player);
   }
 
   create () {
