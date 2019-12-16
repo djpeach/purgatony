@@ -10,6 +10,7 @@ export default class BootScene extends Phaser.Scene {
 
   init (data) {
     this.cluesInfo = data.clues;
+    this.scene.launch('Hints');
   }
 
   preload () {
@@ -34,6 +35,7 @@ export default class BootScene extends Phaser.Scene {
 
   create () {
     this.scene.get('Game').events.on('resume', () => {
+      this.events.emit('updateText', "WASD to move around");
       this.input.keyboard.resetKeys();
       this.player.frozen = false;
     })
@@ -104,6 +106,7 @@ export default class BootScene extends Phaser.Scene {
   }
 
   inspectClue(player, clue) {
+    this.events.emit('updateText', "'Q' to inspect");
     if (this.cursors.b_1.isDown) {
       this.scene.run('Clue', {clue: {...this.cluesInfo[`level1Clues`][clue.client][clue.clueId], ...clue}});
       this.scene.bringToTop('Clue');
