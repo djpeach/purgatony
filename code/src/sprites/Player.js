@@ -62,7 +62,6 @@ export default class Player extends Character {
         angle = 135;
       }
     } else if (cursors.left.isDown) {
-      console.log('going left');
       this.holdingFrame = 9;
       this.anims.play('tony_left', true, this.holdingFrame);
       speed = potSpeed;

@@ -1,10 +1,42 @@
 {
   "misterChester": {
     "bottle": {
-      "prompt": "Looks like a half-empty beer bottle"
+      "prompt": "Looks like a half-empty beer bottle",
+      "options": [
+        {
+          "prompt": "Put it back down"
+        },
+        {
+          "prompt": "Dust it for prints"
+        }
+      ],
+      "results": [
+        {
+          "prompt": "You leave it alone for now"
+        },
+        {
+          "prompt": "It has Mister Chester's prints all over it"
+        }
+      ]
     },
     "invitation": {
-      "prompt": "Invite to a ribbon cutting ceremony"
+      "prompt": "Invite to a ribbon cutting ceremony",
+      "options": [
+        {
+          "prompt": "Put it back down"
+        },
+        {
+          "prompt": "Read the letterhead"
+        }
+      ],
+      "results": [
+        {
+          "prompt": "You leave it alone for now"
+        },
+        {
+          "prompt": "It's addressed to the sponsor, Mister Chester"
+        }
+      ]
     }
   }
 }

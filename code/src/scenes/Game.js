@@ -105,7 +105,7 @@ export default class BootScene extends Phaser.Scene {
 
   inspectClue(player, clue) {
     if (this.cursors.b_1.isDown) {
-      this.scene.run('Clue');
+      this.scene.run('Clue', {clue: {...this.cluesInfo[`level1Clues`][clue.client][clue.clueId], ...clue}});
       this.scene.bringToTop('Clue');
       this.scene.pause('Game');
       this.player.freeze();
