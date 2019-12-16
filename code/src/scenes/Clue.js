@@ -7,12 +7,15 @@ export default class ClueScene extends Phaser.Scene {
 
   init() {
     this.gameScene = this.scene.get('Game');
-    this.scene.setVisible(false, 'Clue');
-    this.scene.pause('Clue');
   }
 
   preload() {
-    this.cursors = this.input.keyboard.createCursorKeys();
+    this.cursors = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D
+    })
   }
 
   create() {
@@ -24,5 +27,9 @@ export default class ClueScene extends Phaser.Scene {
   }
 
   update(time, delta) {
+    if (this.cursors.down.isDown) {
+      this.scene.resume('Game');
+      this.scene.stop('Clue');
+    }
   }
 };

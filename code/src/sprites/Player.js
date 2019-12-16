@@ -6,6 +6,7 @@ export default class Player extends Character {
     super(scene, x, y, spritesheet, 1);
     this.scene = scene;
     this.holdingFrame = 1;
+    this.frozen = false;
 
     this.scene.anims.create({
       key: 'tony_up',
@@ -37,6 +38,7 @@ export default class Player extends Character {
     let speed = 0;
     let angle = 0;
     let potSpeed = 400;
+    if (this.frozen) return;
     if (cursors.up.isDown) {
       this.holdingFrame = 1;
       this.anims.play('tony_up', true, this.holdingFrame);
@@ -60,6 +62,7 @@ export default class Player extends Character {
         angle = 135;
       }
     } else if (cursors.left.isDown) {
+      console.log('going left');
       this.holdingFrame = 9;
       this.anims.play('tony_left', true, this.holdingFrame);
       speed = potSpeed;
@@ -76,5 +79,12 @@ export default class Player extends Character {
     const x = speed * Math.cos(angle * Math.PI / 180);
     const y = speed * Math.sin(angle * Math.PI / 180);
     this.setVelocity(x, y);
+  }
+
+  freeze() {
+    this.frozen = true;
+    this.setVelocity(0);
+    this.anims.stop();
+    this.setTexture('tony', this.holdingFrame);
   }
 }

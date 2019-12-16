@@ -10,8 +10,6 @@ export default class BootScene extends Phaser.Scene {
 
   init (data) {
     this.cluesInfo = data.clues;
-    this.scene.launch('Clue');
-    this.canInteractWithClue = true;
   }
 
   preload () {
@@ -21,7 +19,8 @@ export default class BootScene extends Phaser.Scene {
         up:Phaser.Input.Keyboard.KeyCodes.W,
         down:Phaser.Input.Keyboard.KeyCodes.S,
         left:Phaser.Input.Keyboard.KeyCodes.A,
-        right:Phaser.Input.Keyboard.KeyCodes.D
+        right:Phaser.Input.Keyboard.KeyCodes.D,
+        b_1: Phaser.Input.Keyboard.KeyCodes.Q,
       }
     );
     this.map = this.createMap();
@@ -34,7 +33,10 @@ export default class BootScene extends Phaser.Scene {
   }
 
   create () {
-
+    this.scene.get('Game').events.on('resume', () => {
+      this.input.keyboard.resetKeys();
+      this.player.frozen = false;
+    })
   }
 
   update(time, dt) {
@@ -102,10 +104,11 @@ export default class BootScene extends Phaser.Scene {
   }
 
   inspectClue(player, clue) {
-    if (!this.scene.isVisible('Clue') && this.canInteractWithClue) {
-      this.canInteractWithClue = false;
+    if (this.cursors.b_1.isDown) {
+      this.scene.run('Clue');
+      this.scene.bringToTop('Clue');
       this.scene.pause('Game');
-      this.scene.setVisible(true, 'Clue');
+      this.player.freeze();
     }
   }
 
