@@ -2,15 +2,17 @@ import 'phaser';
 import Player from '../sprites/Player'
 import Clue from "../sprites/Clue";
 import NPC from "../sprites/NPC";
-import level1Clues from '../../assets/clues/level1'
 
 export default class BootScene extends Phaser.Scene {
   constructor (key) {
     super(key);
   }
 
+  init (data) {
+    this.cluesInfo = data.clues;
+  }
+
   preload () {
-    this.load.json('level1Clues', level1Clues);
     this.scale.on('resize', this.resize, this);
     this.cursors = this.input.keyboard.addKeys(
       {

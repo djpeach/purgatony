@@ -5,6 +5,7 @@ import mainTileSheet from '../../assets/tilesheets/mainTileSheet.png'
 import tony from '../../assets/characters/tony.png'
 import misterChester from '../../assets/characters/misterChester.png'
 import oldLadyNazi from '../../assets/characters/oldLadyNazi.png'
+import level1Clues from '../../assets/clues/level1'
 
 export default class BootScene extends Phaser.Scene {
   constructor (key) {
@@ -18,9 +19,13 @@ export default class BootScene extends Phaser.Scene {
     this.load.spritesheet('tony', tony, { frameWidth: 32, frameHeight: 32, margin: 0, spacing: 0});
     this.load.spritesheet('misterChester', misterChester, { frameWidth: 32, frameHeight: 32, margin: 0, spacing: 0});
     this.load.spritesheet('oldLadyNazi', oldLadyNazi, { frameWidth: 32, frameHeight: 32, margin: 0, spacing: 0});
+    this.load.json('level1Clues', level1Clues);
   }
 
   create () {
-    this.scene.start('Game');
+    const clues = {
+      level1Clues: this.cache.json.get('level1Clues')
+    };
+    this.scene.start('Game', {clues});
   }
 };

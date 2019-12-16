@@ -5,8 +5,8 @@ export default class Player extends Character {
   constructor(scene, x, y, spritesheet) {
     super(scene, x, y, spritesheet, 1);
     this.scene = scene;
-    console.log(this.scene.cache.json.entries.level1Clues);
     this.holdingFrame = 1;
+    console.log(this.scene.cluesInfo);
 
     this.scene.anims.create({
       key: 'tony_up',
@@ -80,9 +80,6 @@ export default class Player extends Character {
   }
 
   inspectClue(player, clue) {
-    // console.log(this.cache);
-    // console.log(this.scene.cache.json.get('level1Clues'));
-    // let clueJson = this.scene.cache.json.get(`level1Clues`);
-    // console.log(clueJson[clue.client][clue.clueId].prompt);
+    console.log(this.scene.cluesInfo);
   }
 }
