@@ -2,6 +2,7 @@ import 'phaser';
 import Player from '../sprites/Player'
 import Clue from "../sprites/Clue";
 import NPC from "../sprites/NPC";
+import level1Clues from '../../assets/clues/level1'
 
 export default class BootScene extends Phaser.Scene {
   constructor (key) {
@@ -9,6 +10,7 @@ export default class BootScene extends Phaser.Scene {
   }
 
   preload () {
+    this.load.json('level1Clues', level1Clues);
     this.scale.on('resize', this.resize, this);
     this.cursors = this.input.keyboard.addKeys(
       {
@@ -70,7 +72,7 @@ export default class BootScene extends Phaser.Scene {
     let objectLayer = this.map.getObjectLayer('Clues');
     let clues = this.add.group();
     objectLayer.objects.forEach((clue) => {
-      let clueSprite = new Clue(this, clue.x, clue.y, clue.gid - 1);
+      let clueSprite = new Clue(this, clue.x, clue.y, clue.gid - 1, clue);
       clues.add(clueSprite);
     });
 
@@ -90,9 +92,8 @@ export default class BootScene extends Phaser.Scene {
 
   addCollisions() {
     this.physics.add.collider(this.player, this.wallsLayer);
-    this.clients.children.entries.forEach((client) => {
-      this.physics.add.collider(client, this.wallsLayer)
-    });
+    this.physics.add.collider(this.wallsLayer, this.clients);
+    this.physics.add.overlap(this.player, this.clues, this.player.inspectClue, null, this);
   }
 
   resize (gameSize, baseSize, displaySize, resolution) {

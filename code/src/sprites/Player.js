@@ -5,6 +5,7 @@ export default class Player extends Character {
   constructor(scene, x, y, spritesheet) {
     super(scene, x, y, spritesheet, 1);
     this.scene = scene;
+    console.log(this.scene.cache.json.entries.level1Clues);
     this.holdingFrame = 1;
 
     this.scene.anims.create({
@@ -76,5 +77,12 @@ export default class Player extends Character {
     const x = speed * Math.cos(angle * Math.PI / 180);
     const y = speed * Math.sin(angle * Math.PI / 180);
     this.setVelocity(x, y);
+  }
+
+  inspectClue(player, clue) {
+    // console.log(this.cache);
+    // console.log(this.scene.cache.json.get('level1Clues'));
+    // let clueJson = this.scene.cache.json.get(`level1Clues`);
+    // console.log(clueJson[clue.client][clue.clueId].prompt);
   }
 }
