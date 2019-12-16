@@ -60,9 +60,8 @@ export default class NPC extends Character {
     } else if (angle === 0) { // right
       this.holdingFrame = 13;
       this.anims.play(`${this.spritesheet}_right`,true, this.holdingFrame);
-    } else {
-      console.log(angle);
     }
+
     const x = speed * Math.cos(angle * Math.PI / 180);
     const y = speed * Math.sin(angle * Math.PI / 180);
     this.setVelocity(x, y);

@@ -10,6 +10,8 @@ export default class BootScene extends Phaser.Scene {
 
   init (data) {
     this.cluesInfo = data.clues;
+    this.scene.launch('Clue');
+    this.canInteractWithClue = true;
   }
 
   preload () {
@@ -32,6 +34,7 @@ export default class BootScene extends Phaser.Scene {
   }
 
   create () {
+
   }
 
   update(time, dt) {
@@ -95,7 +98,15 @@ export default class BootScene extends Phaser.Scene {
   addCollisions() {
     this.physics.add.collider(this.player, this.wallsLayer);
     this.physics.add.collider(this.wallsLayer, this.clients);
-    this.physics.add.overlap(this.player, this.clues, this.player.inspectClue, null, this);
+    this.physics.add.overlap(this.player, this.clues, this.inspectClue, null, this);
+  }
+
+  inspectClue(player, clue) {
+    if (!this.scene.isVisible('Clue') && this.canInteractWithClue) {
+      this.canInteractWithClue = false;
+      this.scene.pause('Game');
+      this.scene.setVisible(true, 'Clue');
+    }
   }
 
   resize (gameSize, baseSize, displaySize, resolution) {

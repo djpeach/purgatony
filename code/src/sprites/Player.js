@@ -6,7 +6,6 @@ export default class Player extends Character {
     super(scene, x, y, spritesheet, 1);
     this.scene = scene;
     this.holdingFrame = 1;
-    console.log(this.scene.cluesInfo);
 
     this.scene.anims.create({
       key: 'tony_up',
@@ -77,9 +76,5 @@ export default class Player extends Character {
     const x = speed * Math.cos(angle * Math.PI / 180);
     const y = speed * Math.sin(angle * Math.PI / 180);
     this.setVelocity(x, y);
-  }
-
-  inspectClue(player, clue) {
-    console.log(this.scene.cluesInfo);
   }
 }

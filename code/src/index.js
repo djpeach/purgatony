@@ -1,6 +1,7 @@
 import 'phaser';
 import GameScene from './scenes/Game';
 import BootScene from './scenes/Boot';
+import ClueScene from './scenes/Clue';
 
 const config = {
   type: Phaser.AUTO,
@@ -23,6 +24,7 @@ class Game extends Phaser.Game {
     super(config);
     this.scene.add('Boot', BootScene);
     this.scene.add('Game', GameScene);
+    this.scene.add('Clue', ClueScene);
     this.scene.start('Boot');
   }
 }
