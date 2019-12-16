@@ -4,7 +4,33 @@ import Character from "./Character";
 export default class Player extends Character {
   constructor(scene, x, y, spritesheet) {
     super(scene, x, y, spritesheet, 1);
+    this.scene = scene;
     this.holdingFrame = 1;
+
+    this.scene.anims.create({
+      key: 'tony_up',
+      frames: this.scene.anims.generateFrameNumbers('tony', { start: 0, end: 3 }),
+      frameRate: 7,
+      repeat: -1
+    });
+    this.scene.anims.create({
+      key: 'tony_down',
+      frames: this.scene.anims.generateFrameNumbers('tony', { start: 4, end: 7 }),
+      frameRate: 7,
+      repeat: -1
+    });
+    this.scene.anims.create({
+      key: 'tony_left',
+      frames: this.scene.anims.generateFrameNumbers('tony', { start: 8, end: 11 }),
+      frameRate: 7,
+      repeat: -1
+    });
+    this.scene.anims.create({
+      key: 'tony_right',
+      frames: this.scene.anims.generateFrameNumbers('tony', { start: 12, end: 15 }),
+      frameRate: 7,
+      repeat: -1
+    });
   }
 
   update(dt, cursors) {
@@ -13,7 +39,7 @@ export default class Player extends Character {
     let potSpeed = 400;
     if (cursors.up.isDown) {
       this.holdingFrame = 1;
-      this.anims.play('up', true, this.holdingFrame);
+      this.anims.play('tony_up', true, this.holdingFrame);
       speed = potSpeed;
       if (cursors.left.isDown) {
         angle = 225
@@ -24,7 +50,7 @@ export default class Player extends Character {
       }
     } else if (cursors.down.isDown) {
       this.holdingFrame = 5;
-      this.anims.play('down', true, this.holdingFrame);
+      this.anims.play('tony_down', true, this.holdingFrame);
       speed = potSpeed;
       if (cursors.right.isDown) {
         angle = 45;
@@ -35,12 +61,12 @@ export default class Player extends Character {
       }
     } else if (cursors.left.isDown) {
       this.holdingFrame = 9;
-      this.anims.play('left', true, this.holdingFrame);
+      this.anims.play('tony_left', true, this.holdingFrame);
       speed = potSpeed;
       angle = 180;
     } else if (cursors.right.isDown) {
       this.holdingFrame = 13;
-      this.anims.play('right', true, this.holdingFrame);
+      this.anims.play('tony_right', true, this.holdingFrame);
       speed = potSpeed;
       angle = 0;
     } else {

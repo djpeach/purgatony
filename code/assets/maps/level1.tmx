@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="16">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="17">
  <editorsettings>
   <export target="../levels/level1.json" format="json"/>
  </editorsettings>
@@ -329,7 +329,10 @@
   <object id="13" name="Clue" type="Hidden Book" x="193.61" y="323.318" width="12.2319" height="10.5391"/>
  </objectgroup>
  <objectgroup id="11" name="ClientSpawns">
-  <object id="14" name="misterChester" x="319.575" y="90.7233">
+  <object id="14" name="misterChester" x="110.376" y="160.713">
+   <point/>
+  </object>
+  <object id="16" name="oldLadyNazi" x="319.182" y="133.826">
    <point/>
   </object>
  </objectgroup>

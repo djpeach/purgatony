@@ -62,30 +62,6 @@ export default class BootScene extends Phaser.Scene {
         player = new Player(this, obj.x * 4, obj.y * 4, 'tony');
       }
     });
-    this.anims.create({
-      key: 'up',
-      frames: this.anims.generateFrameNumbers('tony', { start: 0, end: 3 }),
-      frameRate: 7,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'down',
-      frames: this.anims.generateFrameNumbers('tony', { start: 4, end: 7 }),
-      frameRate: 7,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'left',
-      frames: this.anims.generateFrameNumbers('tony', { start: 8, end: 11 }),
-      frameRate: 7,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'right',
-      frames: this.anims.generateFrameNumbers('tony', { start: 12, end: 15 }),
-      frameRate: 7,
-      repeat: -1
-    });
 
     return player;
   }

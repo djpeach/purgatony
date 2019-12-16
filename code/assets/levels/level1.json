@@ -153,15 +153,15 @@
                  "y":44.01
                 }, 
                 {
-                 "height":10.5391451544647,
+                 "height":10.5391,
                  "id":13,
                  "name":"Clue",
                  "rotation":0,
                  "type":"Hidden Book",
                  "visible":true,
-                 "width":12.2319085907744,
-                 "x":193.609818027931,
-                 "y":323.317816335167
+                 "width":12.2319,
+                 "x":193.61,
+                 "y":323.318
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -183,8 +183,20 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":319.574989783408,
-                 "y":90.7233346955456
+                 "x":110.376415166897,
+                 "y":160.712532425781
+                }, 
+                {
+                 "height":0,
+                 "id":16,
+                 "name":"oldLadyNazi",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":319.181664359329,
+                 "y":133.825565297647
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -193,7 +205,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":16,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.1",
