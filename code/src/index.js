@@ -3,6 +3,7 @@ import GameScene from './scenes/Game';
 import BootScene from './scenes/Boot';
 import ClueScene from './scenes/Clue';
 import HintsScene from './scenes/Hints';
+import ChatScene from './scenes/ClientChat';
 
 const config = {
   type: Phaser.AUTO,
@@ -27,6 +28,7 @@ class Game extends Phaser.Game {
     this.scene.add('Game', GameScene);
     this.scene.add('Clue', ClueScene);
     this.scene.add('Hints', HintsScene);
+    this.scene.add('Chat', ChatScene);
     this.scene.start('Boot');
   }
 }

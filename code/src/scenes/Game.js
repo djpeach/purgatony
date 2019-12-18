@@ -10,6 +10,7 @@ export default class BootScene extends Phaser.Scene {
 
   init (data) {
     this.cluesInfo = data.clues;
+    this.chatsInfo = data.chats;
     this.scene.launch('Hints');
   }
 
@@ -93,6 +94,7 @@ export default class BootScene extends Phaser.Scene {
     let clients = this.add.group();
     clientSpawnLayer.objects.forEach((clientSpawn) => {
       let clientSprite = new NPC(this, clientSpawn.x, clientSpawn.y, clientSpawn.name);
+      clientSprite.clientName = clientSpawn.name;
       clients.add(clientSprite);
     });
 
@@ -103,6 +105,7 @@ export default class BootScene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.wallsLayer);
     this.physics.add.collider(this.wallsLayer, this.clients);
     this.physics.add.overlap(this.player, this.clues, this.inspectClue, null, this);
+    this.physics.add.overlap(this.player, this.clients, this.talkToClient, null, this);
   }
 
   inspectClue(player, clue) {
@@ -110,6 +113,16 @@ export default class BootScene extends Phaser.Scene {
     if (this.cursors.b_1.isDown) {
       this.scene.run('Clue', {clue: {...this.cluesInfo[`level1Clues`][clue.client][clue.clueId], ...clue}});
       this.scene.bringToTop('Clue');
+      this.scene.pause('Game');
+      this.player.freeze();
+    }
+  }
+
+  talkToClient(player, client) {
+    this.events.emit('updateText', `'Q' to talk to ${client.clientName}`);
+    if (this.cursors.b_1.isDown) {
+      this.scene.run('Chat', {chat: {...this.chatsInfo[`level1Chats`][client.clientName]}});
+      this.scene.bringToTop('Chat');
       this.scene.pause('Game');
       this.player.freeze();
     }

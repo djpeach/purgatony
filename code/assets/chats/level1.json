@@ -1,0 +1,27 @@
+{
+  "misterChester": {
+    "prompt": "You are talking to Mr. Chester",
+    "options": [
+      {
+        "prompt": "This is Purgatory"
+      },
+      {
+        "prompt": "I'm Tony"
+      },
+      {
+        "prompt": "You're dead"
+      }
+    ],
+    "results": [
+      {
+        "prompt": "Oh! Who are you?"
+      },
+      {
+        "prompt": "What happened?"
+      },
+      {
+        "prompt": "Uhhhh where am I?!"
+      }
+    ]
+  }
+}

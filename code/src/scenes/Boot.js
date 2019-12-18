@@ -6,6 +6,7 @@ import tony from '../../assets/characters/tony.png'
 import misterChester from '../../assets/characters/misterChester.png'
 import oldLadyNazi from '../../assets/characters/oldLadyNazi.png'
 import level1Clues from '../../assets/clues/level1'
+import level1Chats from '../../assets/chats/level1'
 
 export default class BootScene extends Phaser.Scene {
   constructor (key) {
@@ -20,12 +21,16 @@ export default class BootScene extends Phaser.Scene {
     this.load.spritesheet('misterChester', misterChester, { frameWidth: 32, frameHeight: 32, margin: 0, spacing: 0});
     this.load.spritesheet('oldLadyNazi', oldLadyNazi, { frameWidth: 32, frameHeight: 32, margin: 0, spacing: 0});
     this.load.json('level1Clues', level1Clues);
+    this.load.json('level1Chats', level1Chats);
   }
 
   create () {
     const clues = {
       level1Clues: this.cache.json.get('level1Clues')
     };
-    this.scene.start('Game', {clues});
+    const chats = {
+      level1Chats: this.cache.json.get('level1Chats')
+    };
+    this.scene.start('Game', {clues, chats});
   }
 };

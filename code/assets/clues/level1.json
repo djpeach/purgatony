@@ -27,6 +27,9 @@
         },
         {
           "prompt": "Read the letterhead"
+        },
+        {
+          "prompt": "Read the invitation"
         }
       ],
       "results": [
@@ -35,6 +38,9 @@
         },
         {
           "prompt": "It's addressed to the sponsor, Mister Chester"
+        },
+        {
+          "prompt": "Wow! Someone paid for a new children's cancer ward!"
         }
       ]
     }
