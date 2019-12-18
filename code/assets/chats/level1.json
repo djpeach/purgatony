@@ -23,5 +23,30 @@
         "prompt": "Uhhhh where am I?!"
       }
     ]
+  },
+  "oldLadyNazi": {
+    "prompt": "You are talking to the old lady",
+    "options": [
+      {
+        "prompt": "Hmmm you don't look so sweet"
+      },
+      {
+        "prompt": "What is that black shirt under that dress?"
+      },
+      {
+        "prompt": "Omg! You ARE a Nazi!"
+      }
+    ],
+    "results": [
+      {
+        "prompt": "Heh, uh I don't know what you mean"
+      },
+      {
+        "prompt": "Definitely not a Nazi uniform"
+      },
+      {
+        "prompt": "Uh hi there sweetie... "
+      }
+    ]
   }
 }
